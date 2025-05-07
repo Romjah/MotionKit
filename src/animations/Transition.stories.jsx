@@ -5,6 +5,11 @@ const meta = {
   title: 'Animations/Transition',
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: "Le composant Transition permet d'animer les changements d'état d'un élément (apparition, disparition, déplacement, etc.) avec différents effets (fade, slide, scale, flip, etc.). Idéal pour les transitions de pages ou de composants.",
+      },
+    },
   },
   tags: ['autodocs'],
 };
@@ -86,6 +91,13 @@ export const Fade = {
       }}
     />
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: "Transition de type 'fade' : l'élément disparaît ou apparaît en fondu (variation d'opacité).",
+      },
+    },
+  },
 };
 
 export const Slide = {
@@ -101,6 +113,13 @@ export const Slide = {
       }}
     />
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: "Transition de type 'slide' : l'élément glisse horizontalement pour entrer ou sortir de l'écran.",
+      },
+    },
+  },
 };
 
 export const Scale = {
@@ -116,6 +135,13 @@ export const Scale = {
       }}
     />
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: "Transition de type 'scale' : l'élément grandit ou rétrécit lors de l'apparition/disparition.",
+      },
+    },
+  },
 };
 
 export const Flip = {
@@ -131,6 +157,13 @@ export const Flip = {
       }}
     />
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: "Transition de type 'flip' : l'élément effectue une rotation 3D sur l'axe Y.",
+      },
+    },
+  },
 };
 
 export const Combined = {
@@ -155,6 +188,13 @@ export const Combined = {
       }}
     />
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: "Transition combinée : l'élément se déplace, change d'opacité et de taille simultanément.",
+      },
+    },
+  },
 };
 
 export const CustomDuration = {
@@ -171,4 +211,11 @@ export const CustomDuration = {
       }}
     />
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: "Transition 'fade' avec durée personnalisée (500ms) et easing cubic-bezier.",
+      },
+    },
+  },
 }; 

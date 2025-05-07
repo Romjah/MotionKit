@@ -1,0 +1,108 @@
+# Easing & Timing
+
+MotionKit propose des utilitaires pour gérer les courbes d'accélération (easing) et le timing des animations, afin d'obtenir des transitions naturelles et fluides.
+
+## Easing
+
+Les fonctions d'easing contrôlent la vitesse de l'animation au fil du temps. MotionKit inclut plusieurs easings courants :
+
+| Nom | Valeur CSS | Description |
+|-----|------------|-------------|
+| `linear` | `linear` | Vitesse constante |
+| `ease` | `ease` | Démarrage et fin en douceur |
+| `ease-in` | `ease-in` | Démarrage lent, accélération |
+| `ease-out` | `ease-out` | Décélération en fin |
+| `ease-in-out` | `ease-in-out` | Démarrage et fin lents |
+| `cubic-bezier(...)` | `cubic-bezier(…)` | Courbe personnalisée |
+
+### Utilisation
+
+```js
+import { easing } from 'motion-kit';
+
+const ease = easing.easeInOut;
+// Utilisé dans une animation :
+const anim = new BaseAnimation(element, {
+  easing: ease,
+  duration: 400
+});
+```
+
+### Personnalisation
+
+Vous pouvez utiliser n'importe quelle valeur CSS valide, y compris vos propres cubic-bezier :
+
+```js
+const anim = new BaseAnimation(element, {
+  easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+  duration: 500
+});
+```
+
+## Timing
+
+Le timing permet de contrôler la durée, le délai et la synchronisation des animations.
+
+| Option | Type | Par défaut | Description |
+|--------|------|------------|-------------|
+| `duration` | `number` | `300` | Durée de l'animation en ms |
+| `delay` | `number` | `0` | Délai avant le début |
+| `iterations` | `number` | `1` | Nombre de répétitions |
+| `direction` | `string` | `'normal'` | Sens de l'animation |
+
+### Utilisation
+
+```js
+import { timing } from 'motion-kit';
+
+const t = timing.fast; // ex: 150ms
+const anim = new BaseAnimation(element, {
+  duration: t,
+  delay: 50
+});
+```
+
+### Valeurs prédéfinies
+
+MotionKit propose des timings standards :
+
+| Nom | Valeur |
+|-----|--------|
+| `fast` | `150` ms |
+| `normal` | `300` ms |
+| `slow` | `600` ms |
+
+## Bonnes pratiques
+
+- Utilisez des easings naturels pour des animations agréables.
+- Privilégiez des durées courtes (150-400ms) pour la réactivité.
+- Synchronisez les timings pour des transitions cohérentes.
+- Testez vos animations sur différents appareils.
+
+## Exemples
+
+### Animation avec easing personnalisé
+
+```js
+const anim = new BaseAnimation(element, {
+  keyframes: [
+    { opacity: 0 },
+    { opacity: 1 }
+  ],
+  duration: 400,
+  easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+});
+```
+
+### Animation avec timing rapide
+
+```js
+const anim = new BaseAnimation(element, {
+  duration: 150,
+  easing: 'ease-in'
+});
+```
+
+## Ressources
+- [cubic-bezier.com](https://cubic-bezier.com/) pour créer vos propres courbes
+- [MDN: transition-timing-function](https://developer.mozilla.org/fr/docs/Web/CSS/transition-timing-function) 

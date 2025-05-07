@@ -54,21 +54,56 @@ const HoverDemo = (props) => {
 };
 
 export const Default = {
-  render: () => <HoverDemo options={{ scale: 1.1, rotate: 5 }} effect={undefined} />,
+  render: () => <HoverDemo options={{ scale: 1.05 }} effect={undefined} />,
+  parameters: {
+    docs: {
+      description: {
+        story: "Effet de base : agrandissement léger au survol (scale uniquement).",
+      },
+    },
+  },
 };
 
 export const Lift = {
-  render: () => <HoverDemo options={{}} effect="lift" />,
+  render: () => <HoverDemo options={{ scale: 1.1, rotate: 0 }} effect={undefined} />,
+  parameters: {
+    docs: {
+      description: {
+        story: "Effet 'Lift' : l'élément se soulève légèrement (scale 1.1, pas de rotation).",
+      },
+    },
+  },
 };
 
 export const Rotate = {
-  render: () => <HoverDemo options={{}} effect="rotate" />,
+  render: () => <HoverDemo options={{ scale: 1, rotate: 10 }} effect={undefined} />,
+  parameters: {
+    docs: {
+      description: {
+        story: "Effet 'Rotate' : l'élément pivote de 10° au survol (sans scale).",
+      },
+    },
+  },
 };
 
 export const Bounce = {
-  render: () => <HoverDemo options={{}} effect="bounce" />,
+  render: () => <HoverDemo options={{ scale: 1.15, easing: 'cubic-bezier(.68,-0.55,.27,1.55)', duration: 400 }} effect={undefined} />,
+  parameters: {
+    docs: {
+      description: {
+        story: "Effet 'Bounce' : rebond élastique au survol (scale 1.15, easing personnalisé).",
+      },
+    },
+  },
 };
 
 export const Glow = {
-  render: () => <HoverDemo options={{}} effect="glow" />,
+  render: () => <HoverDemo options={{ shadow: '0 0 16px 4px #4a90e2', scale: 1.05 }} effect={undefined} />,
+  parameters: {
+    docs: {
+      description: {
+        story: "Effet 'Glow' : l'élément émet une lueur (ombre portée, scale léger).",
+      },
+    },
+  },
 }; 

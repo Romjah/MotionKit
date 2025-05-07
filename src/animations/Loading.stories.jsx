@@ -16,6 +16,7 @@ const LoadingDemo = (props) => {
   const { options = {}, type } = props || {};
   const elementRef = useRef(null);
   const loadingRef = useRef();
+  const size = options.size || 40;
 
   useEffect(() => {
     if (elementRef.current) {
@@ -35,17 +36,15 @@ const LoadingDemo = (props) => {
   return (
     <div
       ref={elementRef}
+      role="status"
+      aria-label="Chargement"
       style={{
-        width: '200px',
-        height: '100px',
-        backgroundColor: '#4a90e2',
-        borderRadius: '8px',
+        width: `${size}px`,
+        height: `${size}px`,
+        backgroundColor: 'transparent',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        color: 'white',
-        fontSize: '16px',
-        fontWeight: 'bold',
       }}
     />
   );
@@ -53,18 +52,46 @@ const LoadingDemo = (props) => {
 
 export const Spinner = {
   render: () => <LoadingDemo type="spinner" options={{}} />,
+  parameters: {
+    docs: {
+      description: {
+        story: "Indicateur de chargement classique (spinner rotatif).",
+      },
+    },
+  },
 };
 
 export const Dots = {
   render: () => <LoadingDemo type="dots" options={{}} />,
+  parameters: {
+    docs: {
+      description: {
+        story: "Trois points qui rebondissent pour indiquer un chargement léger.",
+      },
+    },
+  },
 };
 
 export const Pulse = {
   render: () => <LoadingDemo type="pulse" options={{}} />,
+  parameters: {
+    docs: {
+      description: {
+        story: "Cercle qui pulse pour un effet subtil de chargement.",
+      },
+    },
+  },
 };
 
 export const Wave = {
   render: () => <LoadingDemo type="wave" options={{}} />,
+  parameters: {
+    docs: {
+      description: {
+        story: "Barre d'ondulation, idéale pour le chargement de contenu.",
+      },
+    },
+  },
 };
 
 export const CustomColor = {
@@ -78,4 +105,11 @@ export const CustomColor = {
       }}
     />
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: "Exemple de personnalisation : spinner rouge, taille et épaisseur modifiées.",
+      },
+    },
+  },
 }; 

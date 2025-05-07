@@ -6,6 +6,11 @@ const meta = {
   title: 'Animations/States',
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: "Le composant States permet d'afficher différents états visuels (succès, erreur, info, etc.) avec icône, message et animation. Idéal pour le feedback utilisateur.",
+      },
+    },
   },
   tags: ['autodocs'],
 };
@@ -84,22 +89,57 @@ const StatesDemo = (props) => {
 
 export const Success = {
   render: () => <StatesDemo initialState="success" options={{}} />,
+  parameters: {
+    docs: {
+      description: {
+        story: "Affiche l'état de succès avec icône ✓, couleurs vertes et animation d'apparition.",
+      },
+    },
+  },
 };
 
 export const Error = {
   render: () => <StatesDemo initialState="error" options={{}} />,
+  parameters: {
+    docs: {
+      description: {
+        story: "Affiche l'état d'erreur avec icône ✕, couleurs rouges et animation d'apparition.",
+      },
+    },
+  },
 };
 
 export const Warning = {
   render: () => <StatesDemo initialState="warning" options={{}} />,
+  parameters: {
+    docs: {
+      description: {
+        story: "Affiche l'état d'avertissement avec icône ⚠, couleurs orange et animation d'apparition.",
+      },
+    },
+  },
 };
 
 export const Info = {
   render: () => <StatesDemo initialState="info" options={{}} />,
+  parameters: {
+    docs: {
+      description: {
+        story: "Affiche l'état d'information avec icône ℹ, couleurs bleues et animation d'apparition.",
+      },
+    },
+  },
 };
 
 export const Loading = {
   render: () => <StatesDemo initialState="loading" options={{}} />,
+  parameters: {
+    docs: {
+      description: {
+        story: "Affiche l'état de chargement avec icône ⟳, couleurs grises et animation de rotation sur l'icône.",
+      },
+    },
+  },
 };
 
 export const WithMessage = {
@@ -111,4 +151,11 @@ export const WithMessage = {
       }}
     />
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: "Affiche un état personnalisé avec message et icône. Permet d'afficher n'importe quel texte d'information ou de feedback.",
+      },
+    },
+  },
 }; 

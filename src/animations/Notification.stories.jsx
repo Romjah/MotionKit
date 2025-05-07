@@ -5,6 +5,11 @@ const meta = {
   title: 'Animations/Notification',
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: "Le composant Notification permet d'afficher des messages contextuels (succès, erreur, info, etc.) à différentes positions de l'écran, avec animation et options de personnalisation.",
+      },
+    },
   },
   tags: ['autodocs'],
 };
@@ -13,23 +18,25 @@ export default meta;
 
 const NotificationDemo = (props) => {
   const { options = {}, message = 'This is a notification' } = props || {};
-  const elementRef = useRef(null);
   const notificationRef = useRef();
 
   useEffect(() => {
-    if (elementRef.current) {
-      notificationRef.current = new Notification(elementRef.current, options);
-      notificationRef.current.show(message);
-    }
+    // Créer la notification dans le body
+    const container = document.createElement('div');
+    document.body.appendChild(container);
+
+    notificationRef.current = new Notification(container, options);
+    notificationRef.current.show(message);
 
     return () => {
       if (notificationRef.current && notificationRef.current.destroy) {
         notificationRef.current.destroy();
       }
+      container.remove();
     };
   }, [options, message]);
 
-  return <div ref={elementRef} />;
+  return null; // Pas de conteneur React à rendre
 };
 
 export const Success = {
@@ -42,6 +49,13 @@ export const Success = {
       message="Operation completed successfully!"
     />
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: "Notification de succès (verte) affichée en haut à droite, idéale pour confirmer une action réussie.",
+      },
+    },
+  },
 };
 
 export const Error = {
@@ -54,6 +68,13 @@ export const Error = {
       message="An error occurred. Please try again."
     />
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: "Notification d'erreur (rouge) affichée en haut à droite, pour signaler un problème ou une action échouée.",
+      },
+    },
+  },
 };
 
 export const Warning = {
@@ -66,6 +87,13 @@ export const Warning = {
       message="Please review your changes before proceeding."
     />
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: "Notification d'avertissement (orange) affichée en haut à droite, pour attirer l'attention sur une action à valider.",
+      },
+    },
+  },
 };
 
 export const Info = {
@@ -78,6 +106,13 @@ export const Info = {
       message="New updates are available."
     />
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: "Notification d'information (bleue) affichée en haut à droite, pour informer l'utilisateur d'une nouveauté ou d'un message neutre.",
+      },
+    },
+  },
 };
 
 export const TopLeft = {
@@ -90,6 +125,13 @@ export const TopLeft = {
       message="Notification in top-left corner"
     />
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: "Notification d'information affichée en haut à gauche de l'écran.",
+      },
+    },
+  },
 };
 
 export const BottomRight = {
@@ -102,6 +144,13 @@ export const BottomRight = {
       message="Notification in bottom-right corner"
     />
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: "Notification d'information affichée en bas à droite de l'écran.",
+      },
+    },
+  },
 };
 
 export const BottomLeft = {
@@ -114,6 +163,13 @@ export const BottomLeft = {
       message="Notification in bottom-left corner"
     />
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: "Notification d'information affichée en bas à gauche de l'écran.",
+      },
+    },
+  },
 };
 
 export const TopCenter = {
@@ -126,6 +182,13 @@ export const TopCenter = {
       message="Notification in top-center"
     />
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: "Notification d'information affichée en haut au centre de l'écran.",
+      },
+    },
+  },
 };
 
 export const BottomCenter = {
@@ -138,4 +201,11 @@ export const BottomCenter = {
       message="Notification in bottom-center"
     />
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: "Notification d'information affichée en bas au centre de l'écran.",
+      },
+    },
+  },
 }; 

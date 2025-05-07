@@ -1,0 +1,113 @@
+# Types & Interfaces
+
+MotionKit est conçu pour être type-safe et propose des types et interfaces clairs pour chaque composant et utilitaire.
+
+## Principaux types
+
+### AnimationOptions
+
+Options communes à toutes les animations :
+
+```ts
+interface AnimationOptions {
+  duration?: number; // Durée en ms
+  easing?: string; // Fonction d'accélération
+  delay?: number; // Délai en ms
+  iterations?: number; // Nombre de répétitions
+  direction?: 'normal' | 'reverse' | 'alternate' | 'alternate-reverse';
+  fill?: 'none' | 'forwards' | 'backwards' | 'both';
+}
+```
+
+### HoverOptions
+
+```ts
+interface HoverOptions extends AnimationOptions {
+  scale?: number;
+  rotate?: number;
+  translateX?: number;
+  translateY?: number;
+  shadow?: string;
+}
+```
+
+### LoadingOptions
+
+```ts
+interface LoadingOptions extends AnimationOptions {
+  type?: 'spinner' | 'dots' | 'pulse' | 'wave';
+  color?: string;
+  size?: number;
+  thickness?: number;
+}
+```
+
+### NotificationOptions
+
+```ts
+interface NotificationOptions extends AnimationOptions {
+  type?: 'success' | 'error' | 'warning' | 'info';
+  position?: 'top-right' | 'top-left' | 'top-center' | 'bottom-right' | 'bottom-left' | 'bottom-center';
+  autoClose?: boolean;
+  autoCloseDelay?: number;
+  maxNotifications?: number;
+  style?: Partial<CSSStyleDeclaration>;
+  icon?: string;
+  action?: { text: string; onClick: () => void };
+}
+```
+
+### StatesOptions
+
+```ts
+interface StatesOptions extends AnimationOptions {
+  state?: 'success' | 'error' | 'warning' | 'info' | 'loading';
+  message?: string;
+  icon?: boolean;
+  colors?: Record<string, { background?: string; text?: string; border?: string }>;
+  animation?: boolean;
+}
+```
+
+### TransitionOptions
+
+```ts
+interface TransitionOptions extends AnimationOptions {
+  type?: 'fade' | 'slide' | 'scale' | 'rotate' | 'custom' | 'sequence';
+  direction?: 'left' | 'right' | 'up' | 'down';
+  scale?: number;
+  angle?: number;
+  properties?: Record<string, [any, any]>;
+  transitions?: TransitionOptions[];
+}
+```
+
+## Utilisation avec TypeScript
+
+Vous pouvez utiliser ces types pour bénéficier de l'autocomplétion et de la vérification de type :
+
+```ts
+import type { HoverOptions } from 'motion-kit';
+
+const options: HoverOptions = {
+  scale: 1.1,
+  rotate: 5,
+  duration: 300
+};
+```
+
+## Types utilitaires
+
+- `Easing` : string (toute valeur CSS valide)
+- `Timing` : number (durée en ms)
+- `StateType` : 'success' | 'error' | 'warning' | 'info' | 'loading'
+- `NotificationType` : 'success' | 'error' | 'warning' | 'info'
+
+## Bonnes pratiques
+- Utilisez les types pour sécuriser vos intégrations.
+- Étendez les interfaces pour créer vos propres variantes.
+- Consultez la documentation de chaque composant pour les options spécifiques.
+
+## Ressources
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/)
+- [MDN: CSS Easing Functions](https://developer.mozilla.org/fr/docs/Web/CSS/transition-timing-function) 
