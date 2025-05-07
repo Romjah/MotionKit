@@ -81,8 +81,10 @@ La documentation complète est disponible dans le dossier `docs/` et via Storybo
 
 ## 🤝 Contribution
 
-Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou une pull request.
+Les contributions sont les bienvenues !
+- Consultez le [guide de contribution](./CONTRIBUTING.md)
+- Respectez le [code de conduite](./CODE_OF_CONDUCT.md)
 
 ## 📝 Licence
 
-MIT 
+Ce projet est sous licence [MIT](./LICENSE). 
