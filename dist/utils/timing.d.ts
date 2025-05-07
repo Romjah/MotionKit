@@ -1,0 +1,10 @@
+export declare const linear: (t: number) => number;
+export declare const easeInQuad: (t: number) => number;
+export declare const easeOutQuad: (t: number) => number;
+export declare const easeInOutQuad: (t: number) => number;
+export declare const easeInCubic: (t: number) => number;
+export declare const easeOutCubic: (t: number) => number;
+export declare const easeInOutCubic: (t: number) => number;
+export declare const easeInElastic: (t: number) => number;
+export declare const easeOutElastic: (t: number) => number;
+export declare const easeInOutElastic: (t: number) => number;

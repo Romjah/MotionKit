@@ -1,0 +1,214 @@
+# Transition
+
+Le composant `Transition` permet de créer des transitions fluides et personnalisables entre différents états d'un élément.
+
+## Installation
+
+```bash
+npm install motion-kit
+```
+
+## Utilisation de base
+
+```jsx
+import { Transition } from 'motion-kit';
+
+const element = document.querySelector('.transition-element');
+const transition = new Transition(element, {
+  duration: 500,
+  easing: 'ease-in-out'
+});
+```
+
+## Types de transitions
+
+MotionKit propose plusieurs types de transitions prédéfinis :
+
+### Fade
+
+```jsx
+const transition = new Transition(element, {
+  type: 'fade',
+  duration: 300
+});
+```
+
+### Slide
+
+```jsx
+const transition = new Transition(element, {
+  type: 'slide',
+  direction: 'left',
+  duration: 400
+});
+```
+
+### Scale
+
+```jsx
+const transition = new Transition(element, {
+  type: 'scale',
+  scale: 1.2,
+  duration: 300
+});
+```
+
+### Rotate
+
+```jsx
+const transition = new Transition(element, {
+  type: 'rotate',
+  angle: 180,
+  duration: 500
+});
+```
+
+## Options
+
+| Option | Type | Par défaut | Description |
+|--------|------|------------|-------------|
+| `type` | `'fade' \| 'slide' \| 'scale' \| 'rotate'` | `'fade'` | Type de transition |
+| `duration` | `number` | `300` | Durée en ms |
+| `easing` | `string` | `'ease'` | Fonction d'accélération |
+| `delay` | `number` | `0` | Délai avant la transition |
+| `direction` | `'left' \| 'right' \| 'up' \| 'down'` | `'left'` | Direction (pour slide) |
+| `scale` | `number` | `1.2` | Échelle (pour scale) |
+| `angle` | `number` | `180` | Angle en degrés (pour rotate) |
+
+## Personnalisation avancée
+
+### Transitions personnalisées
+
+```jsx
+const transition = new Transition(element, {
+  type: 'custom',
+  properties: {
+    opacity: [0, 1],
+    transform: ['translateX(-100%)', 'translateX(0)']
+  },
+  duration: 500,
+  easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+});
+```
+
+### Chaînage de transitions
+
+```jsx
+const transition = new Transition(element, {
+  type: 'sequence',
+  transitions: [
+    { type: 'fade', duration: 200 },
+    { type: 'slide', direction: 'up', duration: 300 }
+  ]
+});
+```
+
+## Méthodes
+
+### play
+
+Démarre la transition.
+
+```jsx
+transition.play();
+```
+
+### reverse
+
+Inverse la transition.
+
+```jsx
+transition.reverse();
+```
+
+### pause
+
+Met en pause la transition.
+
+```jsx
+transition.pause();
+```
+
+### resume
+
+Reprend la transition.
+
+```jsx
+transition.resume();
+```
+
+### destroy
+
+Nettoie la transition.
+
+```jsx
+transition.destroy();
+```
+
+## Bonnes pratiques
+
+1. **Performance**
+   - Utilisez `transform` et `opacity` pour les animations
+   - Évitez les transitions sur des propriétés coûteuses
+   - Limitez le nombre de transitions simultanées
+
+2. **Accessibilité**
+   - Respectez les préférences de réduction de mouvement
+   - Assurez que le contenu reste lisible pendant la transition
+   - Fournissez des alternatives pour les utilisateurs qui désactivent les animations
+
+3. **UX**
+   - Gardez les transitions courtes et subtiles
+   - Utilisez des easings appropriés
+   - Assurez que les transitions ont un sens dans le contexte
+
+## Exemples
+
+### Transition de page
+
+```jsx
+const pageTransition = new Transition(element, {
+  type: 'fade',
+  duration: 400,
+  easing: 'ease-in-out'
+});
+```
+
+### Menu déroulant
+
+```jsx
+const menuTransition = new Transition(element, {
+  type: 'slide',
+  direction: 'down',
+  duration: 300,
+  easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+});
+```
+
+### Notification
+
+```jsx
+const notificationTransition = new Transition(element, {
+  type: 'scale',
+  scale: 1.1,
+  duration: 200,
+  easing: 'ease-out'
+});
+```
+
+## Dépannage
+
+### La transition ne se déclenche pas
+- Vérifiez que l'élément existe
+- Assurez-vous que les options sont valides
+- Vérifiez les erreurs dans la console
+
+### Problèmes de performance
+- Réduisez la durée de la transition
+- Simplifiez les propriétés animées
+- Évitez les transitions simultanées
+
+### Problèmes de style
+- Vérifiez les conflits CSS
+- Assurez-vous que les dimensions sont correctes
+- Vérifiez les propriétés de transformation 

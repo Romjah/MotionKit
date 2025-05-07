@@ -1,0 +1,239 @@
+# BaseAnimation
+
+Le composant `BaseAnimation` est la classe de base pour toutes les animations dans MotionKit. Il fournit les fonctionnalités fondamentales pour créer des animations personnalisées.
+
+## Installation
+
+```bash
+npm install motion-kit
+```
+
+## Utilisation de base
+
+```jsx
+import { BaseAnimation } from 'motion-kit';
+
+const element = document.querySelector('.animated-element');
+const animation = new BaseAnimation(element, {
+  duration: 1000,
+  easing: 'ease-in-out'
+});
+```
+
+## Options de base
+
+| Option | Type | Par défaut | Description |
+|--------|------|------------|-------------|
+| `duration` | `number` | `300` | Durée de l'animation en ms |
+| `easing` | `string` | `'ease'` | Fonction d'accélération |
+| `delay` | `number` | `0` | Délai avant l'animation |
+| `iterations` | `number` | `1` | Nombre d'itérations |
+| `direction` | `'normal' \| 'reverse' \| 'alternate' \| 'alternate-reverse'` | `'normal'` | Direction de l'animation |
+| `fill` | `'none' \| 'forwards' \| 'backwards' \| 'both'` | `'none'` | Mode de remplissage |
+
+## Création d'animations personnalisées
+
+### Animation simple
+
+```jsx
+const animation = new BaseAnimation(element, {
+  keyframes: [
+    { opacity: 0, transform: 'scale(0.8)' },
+    { opacity: 1, transform: 'scale(1)' }
+  ],
+  duration: 500,
+  easing: 'ease-out'
+});
+```
+
+### Animation avec plusieurs propriétés
+
+```jsx
+const animation = new BaseAnimation(element, {
+  keyframes: [
+    { 
+      opacity: 0,
+      transform: 'translateY(-20px) rotate(0deg)',
+      backgroundColor: '#ff0000'
+    },
+    { 
+      opacity: 1,
+      transform: 'translateY(0) rotate(360deg)',
+      backgroundColor: '#00ff00'
+    }
+  ],
+  duration: 1000,
+  easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+});
+```
+
+## Méthodes
+
+### play
+
+Démarre l'animation.
+
+```jsx
+animation.play();
+```
+
+### pause
+
+Met en pause l'animation.
+
+```jsx
+animation.pause();
+```
+
+### resume
+
+Reprend l'animation.
+
+```jsx
+animation.resume();
+```
+
+### reverse
+
+Inverse l'animation.
+
+```jsx
+animation.reverse();
+```
+
+### cancel
+
+Annule l'animation.
+
+```jsx
+animation.cancel();
+```
+
+### finish
+
+Termine l'animation immédiatement.
+
+```jsx
+animation.finish();
+```
+
+### destroy
+
+Nettoie l'animation.
+
+```jsx
+animation.destroy();
+```
+
+## Événements
+
+### onStart
+
+```jsx
+animation.onStart = () => {
+  console.log('Animation démarrée');
+};
+```
+
+### onEnd
+
+```jsx
+animation.onEnd = () => {
+  console.log('Animation terminée');
+};
+```
+
+### onCancel
+
+```jsx
+animation.onCancel = () => {
+  console.log('Animation annulée');
+};
+```
+
+### onIteration
+
+```jsx
+animation.onIteration = () => {
+  console.log('Nouvelle itération');
+};
+```
+
+## Bonnes pratiques
+
+1. **Performance**
+   - Utilisez `transform` et `opacity` pour les animations
+   - Évitez d'animer des propriétés coûteuses comme `width` ou `height`
+   - Utilisez `will-change` avec précaution
+   - Limitez le nombre d'animations simultanées
+
+2. **Accessibilité**
+   - Respectez les préférences de réduction de mouvement
+   - Assurez que le contenu reste lisible pendant l'animation
+   - Fournissez des alternatives pour les utilisateurs qui désactivent les animations
+
+3. **UX**
+   - Gardez les animations courtes et subtiles
+   - Utilisez des easings appropriés au contexte
+   - Assurez que les animations ont un sens dans l'interface
+
+## Exemples
+
+### Animation de chargement
+
+```jsx
+const loadingAnimation = new BaseAnimation(element, {
+  keyframes: [
+    { transform: 'rotate(0deg)' },
+    { transform: 'rotate(360deg)' }
+  ],
+  duration: 1000,
+  iterations: Infinity,
+  easing: 'linear'
+});
+```
+
+### Animation de notification
+
+```jsx
+const notificationAnimation = new BaseAnimation(element, {
+  keyframes: [
+    { transform: 'translateX(-100%)', opacity: 0 },
+    { transform: 'translateX(0)', opacity: 1 }
+  ],
+  duration: 300,
+  easing: 'ease-out'
+});
+```
+
+### Animation de menu
+
+```jsx
+const menuAnimation = new BaseAnimation(element, {
+  keyframes: [
+    { transform: 'scaleY(0)', opacity: 0 },
+    { transform: 'scaleY(1)', opacity: 1 }
+  ],
+  duration: 200,
+  easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+});
+```
+
+## Dépannage
+
+### L'animation ne se déclenche pas
+- Vérifiez que l'élément existe
+- Assurez-vous que les keyframes sont valides
+- Vérifiez les erreurs dans la console
+
+### Problèmes de performance
+- Réduisez la durée de l'animation
+- Simplifiez les propriétés animées
+- Évitez les animations simultanées
+- Utilisez `transform` au lieu de `left`/`top`
+
+### Problèmes de style
+- Vérifiez les conflits CSS
+- Assurez-vous que les dimensions sont correctes
+- Vérifiez les propriétés de transformation
+- Testez sur différents navigateurs 

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MotionKit Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .demo-section {
+            margin: 40px 0;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+        .demo-title {
+            margin-top: 0;
+            color: #333;
+        }
+        .demo-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        .demo-item {
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button {
+            padding: 8px 16px;
+            background: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #357abd;
+        }
+        #notificationContainer {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <h1>MotionKit Demo</h1>
+
+    <div class="demo-section">
+        <h2 class="demo-title">Hover Animations</h2>
+        <div class="demo-container">
+            <div id="hoverScale" class="demo-item">Scale on Hover</div>
+            <div id="hoverRotate" class="demo-item">Rotate on Hover</div>
+            <div id="hoverTranslate" class="demo-item">Translate on Hover</div>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2 class="demo-title">Loading States</h2>
+        <div class="demo-container">
+            <div id="loadingSpinner" class="demo-item">Spinner</div>
+            <div id="loadingDots" class="demo-item">Dots</div>
+            <div id="loadingPulse" class="demo-item">Pulse</div>
+            <div id="loadingWave" class="demo-item">Wave</div>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2 class="demo-title">State Changes</h2>
+        <div class="demo-container">
+            <div id="stateDemo" class="demo-item">State Demo</div>
+        </div>
+        <div>
+            <button onclick="changeState('success')">Success</button>
+            <button onclick="changeState('error')">Error</button>
+            <button onclick="changeState('warning')">Warning</button>
+            <button onclick="changeState('info')">Info</button>
+            <button onclick="changeState('loading')">Loading</button>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2 class="demo-title">Notifications</h2>
+        <div id="notificationContainer"></div>
+        <div>
+            <button onclick="showNotification('success')">Success Notification</button>
+            <button onclick="showNotification('error')">Error Notification</button>
+            <button onclick="showNotification('warning')">Warning Notification</button>
+            <button onclick="showNotification('info')">Info Notification</button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { Hover, Loading, States, Notification } from './dist/index.esm.js';
+
+        // Hover Animations
+        new Hover(document.getElementById('hoverScale'), {
+            type: 'scale',
+            scale: 1.2
+        });
+
+        new Hover(document.getElementById('hoverRotate'), {
+            type: 'rotate',
+            rotation: 15
+        });
+
+        new Hover(document.getElementById('hoverTranslate'), {
+            type: 'translate',
+            translateX: 10,
+            translateY: -10
+        });
+
+        // Loading States
+        new Loading(document.getElementById('loadingSpinner'), {
+            type: 'spinner',
+            color: '#4a90e2'
+        });
+
+        new Loading(document.getElementById('loadingDots'), {
+            type: 'dots',
+            color: '#4a90e2'
+        });
+
+        new Loading(document.getElementById('loadingPulse'), {
+            type: 'pulse',
+            color: '#4a90e2'
+        });
+
+        new Loading(document.getElementById('loadingWave'), {
+            type: 'wave',
+            color: '#4a90e2'
+        });
+
+        // State Demo
+        const stateDemo = new States(document.getElementById('stateDemo'), {
+            state: 'info',
+            message: 'Click buttons to change state'
+        });
+
+        window.changeState = (state) => {
+            stateDemo.setState(state);
+        };
+
+        // Notifications
+        window.showNotification = (type) => {
+            const container = document.getElementById('notificationContainer');
+            const notification = new Notification(container, {
+                type,
+                message: `This is a ${type} notification`,
+                position: 'top-right',
+                autoClose: true,
+                autoCloseDelay: 3000
+            });
+        };
+    </script>
+</body>
+</html> 

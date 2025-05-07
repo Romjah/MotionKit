@@ -1,0 +1,216 @@
+# States
+
+Le composant `States` permet de gérer les différents états visuels d'un élément avec des transitions fluides et des icônes intégrées.
+
+## Installation
+
+```bash
+npm install motion-kit
+```
+
+## Utilisation de base
+
+```jsx
+import { States } from 'motion-kit';
+
+const element = document.querySelector('.state-container');
+const states = new States(element, {
+  state: 'success',
+  message: 'Opération réussie !'
+});
+```
+
+## Types d'états
+
+MotionKit propose plusieurs types d'états prédéfinis :
+
+### Success
+
+```jsx
+const states = new States(element, {
+  state: 'success',
+  message: 'Opération réussie !'
+});
+```
+
+### Error
+
+```jsx
+const states = new States(element, {
+  state: 'error',
+  message: 'Une erreur est survenue.'
+});
+```
+
+### Warning
+
+```jsx
+const states = new States(element, {
+  state: 'warning',
+  message: 'Attention, veuillez vérifier vos informations.'
+});
+```
+
+### Info
+
+```jsx
+const states = new States(element, {
+  state: 'info',
+  message: 'Nouvelles mises à jour disponibles.'
+});
+```
+
+### Loading
+
+```jsx
+const states = new States(element, {
+  state: 'loading',
+  message: 'Chargement en cours...'
+});
+```
+
+## Options
+
+| Option | Type | Par défaut | Description |
+|--------|------|------------|-------------|
+| `state` | `'success' \| 'error' \| 'warning' \| 'info' \| 'loading'` | `'info'` | Type d'état |
+| `message` | `string` | `''` | Message à afficher |
+| `icon` | `boolean` | `true` | Afficher l'icône |
+| `duration` | `number` | `300` | Durée de la transition en ms |
+| `easing` | `string` | `'ease'` | Fonction d'accélération |
+| `colors` | `object` | `{}` | Couleurs personnalisées |
+| `animation` | `boolean` | `true` | Activer les animations |
+
+## Personnalisation avancée
+
+### Couleurs personnalisées
+
+```jsx
+const states = new States(element, {
+  state: 'success',
+  message: 'Opération réussie !',
+  colors: {
+    success: {
+      background: '#e8f5e9',
+      text: '#2e7d32',
+      border: '#a5d6a7'
+    }
+  }
+});
+```
+
+### Animation personnalisée
+
+```jsx
+const states = new States(element, {
+  state: 'info',
+  message: 'Information',
+  duration: 500,
+  easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+});
+```
+
+## Méthodes
+
+### setState
+
+Change l'état actuel avec une animation.
+
+```jsx
+states.setState('success');
+```
+
+### setMessage
+
+Met à jour le message affiché.
+
+```jsx
+states.setMessage('Nouveau message');
+```
+
+### setIcon
+
+Active ou désactive l'icône.
+
+```jsx
+states.setIcon(false);
+```
+
+### destroy
+
+Nettoie l'état et supprime les animations.
+
+```jsx
+states.destroy();
+```
+
+## Bonnes pratiques
+
+1. **Performance**
+   - Utilisez des transitions légères
+   - Évitez les changements d'état trop fréquents
+   - Nettoyez les états inutilisés
+
+2. **Accessibilité**
+   - Assurez un contraste suffisant
+   - Utilisez des icônes significatives
+   - Fournissez des messages clairs
+
+3. **UX**
+   - Choisissez l'état approprié au contexte
+   - Gardez les messages concis
+   - Utilisez des animations subtiles
+
+## Exemples
+
+### État de formulaire
+
+```jsx
+const formState = new States(element, {
+  state: 'info',
+  message: 'Veuillez remplir tous les champs',
+  icon: true
+});
+```
+
+### État de chargement
+
+```jsx
+const loadingState = new States(element, {
+  state: 'loading',
+  message: 'Chargement en cours...',
+  duration: 200
+});
+```
+
+### État de validation
+
+```jsx
+const validationState = new States(element, {
+  state: 'success',
+  message: 'Formulaire validé !',
+  colors: {
+    success: {
+      background: '#e8f5e9',
+      text: '#2e7d32'
+    }
+  }
+});
+```
+
+## Dépannage
+
+### L'état ne change pas
+- Vérifiez que l'état est valide
+- Assurez-vous que l'élément existe
+- Vérifiez les erreurs dans la console
+
+### Problèmes d'animation
+- Vérifiez la durée et l'easing
+- Assurez-vous que les styles sont correctement appliqués
+- Vérifiez les performances du navigateur
+
+### Problèmes de style
+- Vérifiez les conflits CSS
+- Assurez-vous que les couleurs sont valides
+- Vérifiez les dimensions de l'élément 

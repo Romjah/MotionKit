@@ -1,0 +1,162 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Contributing" />
+
+# Contribuer à MotionKit
+
+Nous sommes ravis que vous souhaitiez contribuer à MotionKit ! Ce guide vous aidera à comprendre comment participer au projet.
+
+## 🚀 Pour Commencer
+
+1. Fork le repository
+2. Clone votre fork :
+   ```bash
+   git clone https://github.com/votre-username/motion-kit.git
+   cd motion-kit
+   ```
+3. Installez les dépendances :
+   ```bash
+   npm install
+   ```
+
+## 📝 Structure du Projet
+
+```
+motion-kit/
+├── src/
+│   ├── animations/        # Composants d'animation
+│   ├── utils/            # Utilitaires
+│   └── types/            # Types TypeScript
+├── stories/              # Documentation Storybook
+├── tests/                # Tests unitaires
+└── examples/             # Exemples d'utilisation
+```
+
+## 🛠️ Développement
+
+1. Créez une branche pour votre fonctionnalité :
+   ```bash
+   git checkout -b feature/nouvelle-fonctionnalite
+   ```
+
+2. Lancez le serveur de développement :
+   ```bash
+   npm run dev
+   ```
+
+3. Lancez Storybook pour la documentation :
+   ```bash
+   npm run storybook
+   ```
+
+## 📚 Ajouter une Nouvelle Animation
+
+1. Créez un nouveau fichier dans `src/animations/` :
+   ```typescript
+   // src/animations/ma-nouvelle-animation.ts
+   import { BaseAnimation } from './base';
+   
+   export class MaNouvelleAnimation extends BaseAnimation {
+     constructor(element: HTMLElement, options = {}) {
+       super(element, options);
+     }
+   
+     public animate() {
+       // Implémentez votre animation ici
+     }
+   }
+   ```
+
+2. Ajoutez les tests dans `tests/` :
+   ```typescript
+   // tests/ma-nouvelle-animation.test.ts
+   import { MaNouvelleAnimation } from '../src/animations/ma-nouvelle-animation';
+   
+   describe('MaNouvelleAnimation', () => {
+     it('should animate correctly', () => {
+       // Tests ici
+     });
+   });
+   ```
+
+3. Créez la documentation Storybook :
+   ```typescript
+   // stories/MaNouvelleAnimation.stories.tsx
+   import { Meta, Story } from '@storybook/react';
+   import { MaNouvelleAnimation } from '../src/animations/ma-nouvelle-animation';
+   
+   export default {
+     title: 'Animations/MaNouvelleAnimation',
+     component: MaNouvelleAnimation,
+   } as Meta;
+   
+   const Template: Story = (args) => <MaNouvelleAnimation {...args} />;
+   
+   export const Default = Template.bind({});
+   ```
+
+## 🧪 Tests
+
+Nous utilisons Jest pour les tests unitaires :
+
+```bash
+# Lancer tous les tests
+npm test
+
+# Lancer les tests en mode watch
+npm run test:watch
+
+# Vérifier la couverture des tests
+npm run test:coverage
+```
+
+## 📦 Build
+
+Pour construire le projet :
+
+```bash
+npm run build
+```
+
+Cela générera :
+- `dist/motion-kit.js` - Bundle UMD
+- `dist/motion-kit.esm.js` - Bundle ES modules
+- `dist/motion-kit.min.js` - Bundle minifié
+
+## 📝 Pull Request
+
+1. Assurez-vous que tous les tests passent
+2. Mettez à jour la documentation si nécessaire
+3. Créez une PR avec une description claire
+4. Attendez la review
+
+## 🎨 Style de Code
+
+Nous utilisons ESLint et Prettier pour maintenir un style de code cohérent :
+
+```bash
+# Vérifier le style
+npm run lint
+
+# Corriger automatiquement
+npm run lint:fix
+```
+
+## 📚 Documentation
+
+La documentation est gérée avec Storybook. Pour ajouter ou modifier la documentation :
+
+1. Modifiez les fichiers `.stories.tsx` existants
+2. Ajoutez de nouveaux exemples si nécessaire
+3. Mettez à jour la documentation principale dans `stories/`
+
+## 🤝 Code de Conduite
+
+- Soyez respectueux
+- Soyez constructif
+- Soyez patient
+- Soyez ouvert aux suggestions
+
+## 📄 Licence
+
+MotionKit est sous licence MIT. En contribuant, vous acceptez que votre code sera sous la même licence. 

@@ -1,0 +1,184 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Configuration" />
+
+# Configuration des Animations
+
+MotionKit offre de nombreuses options pour personnaliser vos animations. Voici un guide détaillé des différentes configurations disponibles.
+
+## Options Globales
+
+Toutes les animations partagent un ensemble d'options de base :
+
+```typescript
+interface BaseOptions {
+  duration?: number;      // Durée de l'animation en millisecondes
+  easing?: string;        // Fonction d'accélération
+  delay?: number;         // Délai avant le début de l'animation
+  iterations?: number;    // Nombre de répétitions (Infinity pour une boucle)
+  direction?: string;     // Direction de l'animation
+  fill?: string;          // État final de l'animation
+}
+```
+
+### Exemples d'Utilisation
+
+```typescript
+// Animation rapide avec délai
+const options = {
+  duration: 300,
+  delay: 100,
+  easing: 'ease-out'
+};
+
+// Animation en boucle
+const loopOptions = {
+  duration: 1000,
+  iterations: Infinity,
+  direction: 'alternate'
+};
+```
+
+## Options Spécifiques par Animation
+
+### Transitions
+
+```typescript
+interface TransitionOptions extends BaseOptions {
+  distance?: number;      // Distance de déplacement pour les slides
+  opacity?: number;       // Opacité finale pour les fades
+  scale?: number;         // Échelle finale pour les zooms
+}
+```
+
+### Notifications
+
+```typescript
+interface NotificationOptions extends BaseOptions {
+  type?: 'success' | 'error' | 'warning' | 'info';
+  position?: 'top' | 'bottom' | 'left' | 'right';
+  autoClose?: boolean;
+  autoCloseDelay?: number;
+}
+```
+
+### Loading
+
+```typescript
+interface LoadingOptions extends BaseOptions {
+  size?: 'small' | 'medium' | 'large';
+  color?: string;
+  thickness?: number;
+  type?: 'spinner' | 'dots' | 'progress';
+}
+```
+
+### States
+
+```typescript
+interface StatesOptions extends BaseOptions {
+  state?: 'success' | 'error' | 'warning' | 'info' | 'loading';
+  icon?: boolean;
+  message?: string;
+}
+```
+
+### Hover
+
+```typescript
+interface HoverOptions extends BaseOptions {
+  scale?: number;
+  lift?: number;
+  rotation?: number;
+  shadow?: boolean;
+}
+```
+
+## Fonctions d'Accélération
+
+MotionKit supporte plusieurs fonctions d'accélération prédéfinies :
+
+- `linear`
+- `ease`
+- `ease-in`
+- `ease-out`
+- `ease-in-out`
+- `cubic-bezier(n,n,n,n)`
+
+### Exemple avec Cubic Bezier
+
+```typescript
+const customEasing = {
+  easing: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)'
+};
+```
+
+## Bonnes Pratiques
+
+1. **Performance**
+   - Utilisez des durées courtes (200-500ms) pour les interactions utilisateur
+   - Évitez les animations simultanées sur trop d'éléments
+   - Préférez les propriétés `transform` et `opacity` pour de meilleures performances
+
+2. **Accessibilité**
+   - Respectez la préférence `prefers-reduced-motion`
+   - Fournissez des alternatives pour les utilisateurs qui ne peuvent pas voir les animations
+   - Assurez-vous que les animations ne distraient pas de l'utilisation principale
+
+3. **UX**
+   - Utilisez des animations pour guider l'attention de l'utilisateur
+   - Maintenez une cohérence dans les animations similaires
+   - Évitez les animations trop complexes ou distrayantes
+
+## Exemple Complet
+
+```typescript
+import { Transition, Notification, Loading, States, Hover } from 'motion-kit';
+
+// Configuration globale
+const globalConfig = {
+  duration: 400,
+  easing: 'ease-out',
+  delay: 0
+};
+
+// Transitions
+const transition = new Transition(element, {
+  ...globalConfig,
+  distance: 20,
+  opacity: 0.8
+});
+
+// Notifications
+const notification = new Notification(element, {
+  ...globalConfig,
+  type: 'success',
+  position: 'top',
+  autoClose: true,
+  autoCloseDelay: 3000
+});
+
+// Loading
+const loading = new Loading(element, {
+  ...globalConfig,
+  size: 'medium',
+  color: '#3498db',
+  type: 'spinner'
+});
+
+// States
+const states = new States(element, {
+  ...globalConfig,
+  state: 'success',
+  icon: true,
+  message: 'Operation completed'
+});
+
+// Hover
+const hover = Hover.lift(element, {
+  ...globalConfig,
+  scale: 1.1,
+  lift: 5,
+  shadow: true
+});
+``` 

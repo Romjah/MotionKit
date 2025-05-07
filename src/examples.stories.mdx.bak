@@ -1,0 +1,239 @@
+import { Meta } from '@storybook/blocks';
+import { Transition } from '../animations/transition';
+import { Notification } from '../animations/notification';
+import { Loading } from '../animations/loading';
+import { States } from '../animations/states';
+import { Hover } from '../animations/hover';
+
+<Meta title="Examples" />
+
+# Exemples d'Utilisation
+
+Voici quelques exemples concrets d'utilisation de MotionKit dans différents contextes.
+
+## Formulaire Interactif
+
+```typescript
+import { Transition, Notification, States } from 'motion-kit';
+
+class FormHandler {
+  private form: HTMLFormElement;
+  private submitButton: HTMLButtonElement;
+  private notification: Notification;
+
+  constructor(formId: string) {
+    this.form = document.getElementById(formId) as HTMLFormElement;
+    this.submitButton = this.form.querySelector('button[type="submit"]');
+    this.notification = new Notification(document.createElement('div'), {
+      position: 'top',
+      autoClose: true
+    });
+
+    this.setupForm();
+  }
+
+  private setupForm() {
+    // Animation du bouton au survol
+    Hover.lift(this.submitButton, {
+      scale: 1.05,
+      lift: 2
+    });
+
+    // Animation des champs au focus
+    this.form.querySelectorAll('input, textarea').forEach(field => {
+      field.addEventListener('focus', () => {
+        new Transition(field).scale(1.02);
+      });
+    });
+
+    // Gestion de la soumission
+    this.form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // État de chargement
+      const states = new States(this.submitButton);
+      states.setState('loading');
+
+      try {
+        // Simulation d'une requête API
+        await this.submitForm();
+        
+        // Animation de succès
+        states.setState('success');
+        this.notification.show('Formulaire envoyé avec succès!', 'success');
+        
+        // Animation de réinitialisation
+        new Transition(this.form).fadeOut();
+      } catch (error) {
+        states.setState('error');
+        this.notification.show('Une erreur est survenue', 'error');
+      }
+    });
+  }
+
+  private async submitForm() {
+    // Simulation d'une requête API
+    return new Promise(resolve => setTimeout(resolve, 1500));
+  }
+}
+```
+
+## Liste d'Éléments avec Animations
+
+```typescript
+import { Transition, Hover } from 'motion-kit';
+
+class AnimatedList {
+  private list: HTMLElement;
+  private items: HTMLElement[];
+
+  constructor(listId: string) {
+    this.list = document.getElementById(listId);
+    this.items = Array.from(this.list.children) as HTMLElement[];
+    this.setupList();
+  }
+
+  private setupList() {
+    // Animation d'apparition des éléments
+    this.items.forEach((item, index) => {
+      const transition = new Transition(item);
+      transition.fadeIn({ delay: index * 100 });
+      
+      // Effet de survol
+      Hover.lift(item, {
+        scale: 1.03,
+        lift: 3,
+        shadow: true
+      });
+    });
+  }
+
+  public addItem(content: string) {
+    const newItem = document.createElement('div');
+    newItem.textContent = content;
+    
+    // Animation d'ajout
+    const transition = new Transition(newItem);
+    transition.slideIn('right');
+    
+    this.list.appendChild(newItem);
+    this.items.push(newItem);
+  }
+
+  public removeItem(index: number) {
+    const item = this.items[index];
+    if (item) {
+      const transition = new Transition(item);
+      transition.fadeOut(() => {
+        item.remove();
+        this.items.splice(index, 1);
+      });
+    }
+  }
+}
+```
+
+## Tableau de Bord avec États
+
+```typescript
+import { Loading, States, Transition } from 'motion-kit';
+
+class Dashboard {
+  private cards: HTMLElement[];
+  private loading: Loading;
+
+  constructor() {
+    this.cards = Array.from(document.querySelectorAll('.dashboard-card'));
+    this.loading = new Loading(document.createElement('div'), {
+      size: 'large',
+      type: 'spinner'
+    });
+    
+    this.initializeDashboard();
+  }
+
+  private async initializeDashboard() {
+    // Animation d'apparition des cartes
+    this.cards.forEach((card, index) => {
+      const transition = new Transition(card);
+      transition.fadeIn({ delay: index * 150 });
+    });
+
+    // Mise à jour des données
+    await this.updateData();
+  }
+
+  private async updateData() {
+    this.loading.start();
+    
+    try {
+      // Simulation de chargement de données
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // Mise à jour des états
+      this.cards.forEach(card => {
+        const states = new States(card);
+        const value = Math.random() * 100;
+        
+        if (value > 80) {
+          states.setState('success');
+        } else if (value > 50) {
+          states.setState('info');
+        } else {
+          states.setState('warning');
+        }
+      });
+    } finally {
+      this.loading.stop();
+    }
+  }
+}
+```
+
+## Navigation avec Transitions
+
+```typescript
+import { Transition } from 'motion-kit';
+
+class Navigation {
+  private currentPage: HTMLElement;
+  private pages: Map<string, HTMLElement>;
+
+  constructor() {
+    this.pages = new Map();
+    document.querySelectorAll('.page').forEach(page => {
+      this.pages.set(page.id, page as HTMLElement);
+    });
+    
+    this.currentPage = this.pages.values().next().value;
+    this.setupNavigation();
+  }
+
+  private setupNavigation() {
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = (e.target as HTMLAnchorElement).getAttribute('href').slice(1);
+        this.navigateTo(targetId);
+      });
+    });
+  }
+
+  private async navigateTo(pageId: string) {
+    const targetPage = this.pages.get(pageId);
+    if (!targetPage) return;
+
+    // Animation de sortie
+    const exitTransition = new Transition(this.currentPage);
+    await exitTransition.fadeOut();
+
+    // Animation d'entrée
+    const enterTransition = new Transition(targetPage);
+    await enterTransition.fadeIn();
+
+    this.currentPage = targetPage;
+  }
+}
+```
+
+Ces exemples montrent comment combiner différentes animations de MotionKit pour créer des interfaces utilisateur dynamiques et engageantes. Chaque exemple met en évidence des cas d'utilisation courants et des bonnes pratiques d'implémentation. 

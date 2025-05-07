@@ -1,0 +1,101 @@
+# MotionKit
+
+MotionKit est une bibliothèque d'animations modulaire et type-safe pour les applications web modernes. Inspirée par les meilleures pratiques de l'industrie, elle offre une API intuitive et performante pour créer des animations fluides et engageantes.
+
+## Pourquoi MotionKit ?
+
+- 🚀 **Performance** : Optimisé pour les performances avec des animations basées sur le GPU
+- 🎯 **Type-Safe** : Entièrement écrit en TypeScript pour une meilleure expérience de développement
+- 🎨 **Modulaire** : Utilisez uniquement ce dont vous avez besoin
+- 📱 **Responsive** : S'adapte parfaitement à tous les appareils
+- 🎭 **Personnalisable** : Des options flexibles pour chaque animation
+- 🧪 **Testé** : Couverture de tests complète
+
+## Installation
+
+```bash
+npm install motion-kit
+# ou
+yarn add motion-kit
+```
+
+## Utilisation rapide
+
+```jsx
+import { Hover, Loading, Notification, States, Transition } from 'motion-kit';
+
+// Animation au survol
+const hover = new Hover(element, {
+  scale: 1.1,
+  rotate: 5
+});
+
+// Indicateur de chargement
+const loading = new Loading(element, {
+  type: 'spinner',
+  color: '#4a90e2'
+});
+
+// Notification
+const notification = new Notification(element, {
+  type: 'success',
+  position: 'top-right'
+});
+notification.show('Opération réussie !');
+
+// États
+const states = new States(element, {
+  state: 'success',
+  message: 'Tout est prêt !'
+});
+
+// Transition
+const transition = new Transition(element, {
+  states: {
+    initial: { opacity: 1 },
+    exit: { opacity: 0 }
+  }
+});
+```
+
+## Fonctionnalités principales
+
+### Hover
+Animations élégantes au survol avec des effets prédéfinis et personnalisables.
+
+### Loading
+Indicateurs de chargement variés et personnalisables pour une meilleure expérience utilisateur.
+
+### Notification
+Système de notification flexible avec différents types et positions.
+
+### States
+Gestion d'états visuels avec transitions fluides et icônes intégrées.
+
+### Transition
+Transitions personnalisables entre différents états avec des effets prédéfinis.
+
+## Performance
+
+MotionKit utilise les Web Animations API et les propriétés CSS optimisées pour les performances :
+
+- Utilisation de `transform` et `opacity` pour les animations GPU-accélérées
+- Gestion intelligente de la mémoire avec nettoyage automatique
+- Optimisation des reflows et repaints
+
+## Support des navigateurs
+
+MotionKit supporte tous les navigateurs modernes :
+
+- Chrome 36+
+- Firefox 48+
+- Safari 13.1+
+- Edge 79+
+
+## Contribution
+
+Nous accueillons les contributions ! Consultez notre [guide de contribution](./contributing) pour plus d'informations.
+
+## Licence
+
+MIT 

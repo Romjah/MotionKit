@@ -1,0 +1,199 @@
+# Loading
+
+Le composant `Loading` fournit des indicateurs de chargement élégants et personnalisables pour améliorer l'expérience utilisateur pendant les opérations asynchrones.
+
+## Installation
+
+```bash
+npm install motion-kit
+```
+
+## Utilisation de base
+
+```jsx
+import { Loading } from 'motion-kit';
+
+const element = document.querySelector('.loading-container');
+const loading = new Loading(element, {
+  type: 'spinner',
+  color: '#4a90e2'
+});
+```
+
+## Types d'indicateurs
+
+MotionKit propose plusieurs types d'indicateurs de chargement :
+
+### Spinner
+
+```jsx
+const loading = new Loading(element, {
+  type: 'spinner',
+  color: '#4a90e2',
+  size: 40,
+  thickness: 3
+});
+```
+
+Un spinner rotatif classique, idéal pour les opérations de chargement standard.
+
+### Dots
+
+```jsx
+const loading = new Loading(element, {
+  type: 'dots',
+  color: '#4a90e2',
+  size: 40
+});
+```
+
+Trois points qui rebondissent, parfait pour les chargements plus légers.
+
+### Pulse
+
+```jsx
+const loading = new Loading(element, {
+  type: 'pulse',
+  color: '#4a90e2',
+  size: 40
+});
+```
+
+Un cercle qui pulse, idéal pour les actions de chargement plus subtiles.
+
+### Wave
+
+```jsx
+const loading = new Loading(element, {
+  type: 'wave',
+  color: '#4a90e2',
+  size: 40,
+  thickness: 3
+});
+```
+
+Une barre d'ondulation, parfaite pour les chargements de contenu.
+
+## Options
+
+| Option | Type | Par défaut | Description |
+|--------|------|------------|-------------|
+| `type` | `'spinner' \| 'dots' \| 'pulse' \| 'wave'` | `'spinner'` | Type d'indicateur de chargement |
+| `color` | `string` | `'#4a90e2'` | Couleur de l'indicateur |
+| `size` | `number` | `40` | Taille de l'indicateur en pixels |
+| `thickness` | `number` | `3` | Épaisseur de l'indicateur en pixels |
+| `duration` | `number` | `1000` | Durée d'une animation complète en ms |
+| `easing` | `string` | `'linear'` | Fonction d'accélération |
+| `delay` | `number` | `0` | Délai avant le début de l'animation |
+
+## Personnalisation avancée
+
+### Taille et couleur personnalisées
+
+```jsx
+const loading = new Loading(element, {
+  type: 'spinner',
+  color: '#ff0000',
+  size: 60,
+  thickness: 4
+});
+```
+
+### Animation personnalisée
+
+```jsx
+const loading = new Loading(element, {
+  type: 'pulse',
+  duration: 1500,
+  easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+});
+```
+
+## Méthodes
+
+### updateOptions
+
+Met à jour les options de l'indicateur de chargement.
+
+```jsx
+loading.updateOptions({
+  color: '#ff0000',
+  size: 50
+});
+```
+
+### destroy
+
+Nettoie l'indicateur de chargement et supprime les animations.
+
+```jsx
+loading.destroy();
+```
+
+## Bonnes pratiques
+
+1. **Performance**
+   - Utilisez des animations légères
+   - Évitez les animations complexes sur les appareils mobiles
+   - Limitez le nombre d'indicateurs simultanés
+
+2. **Accessibilité**
+   - Ajoutez un texte alternatif pour les lecteurs d'écran
+   - Assurez un contraste suffisant
+   - Respectez les préférences de réduction de mouvement
+
+3. **UX**
+   - Choisissez le type d'indicateur approprié au contexte
+   - Gardez les animations fluides et non distrayantes
+   - Utilisez des couleurs cohérentes avec votre thème
+
+## Exemples
+
+### Chargement de page
+
+```jsx
+const pageLoading = new Loading(element, {
+  type: 'spinner',
+  size: 60,
+  color: '#2196f3',
+  thickness: 4
+});
+```
+
+### Chargement de formulaire
+
+```jsx
+const formLoading = new Loading(element, {
+  type: 'dots',
+  size: 30,
+  color: '#4caf50'
+});
+```
+
+### Chargement de contenu
+
+```jsx
+const contentLoading = new Loading(element, {
+  type: 'wave',
+  size: 40,
+  color: '#9c27b0',
+  thickness: 2
+});
+```
+
+## Dépannage
+
+### L'indicateur ne s'affiche pas
+- Vérifiez que l'élément conteneur existe
+- Assurez-vous que les dimensions sont correctes
+- Vérifiez les erreurs dans la console
+
+### Animation saccadée
+- Réduisez la complexité de l'animation
+- Vérifiez les performances du navigateur
+- Évitez les animations simultanées
+
+### Problèmes de style
+- Vérifiez les conflits CSS
+- Assurez-vous que l'élément est visible
+- Vérifiez les dimensions du conteneur 

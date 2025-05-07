@@ -1,0 +1,216 @@
+# Notification
+
+Le composant `Notification` offre un système de notification flexible et personnalisable pour afficher des messages importants à l'utilisateur.
+
+## Installation
+
+```bash
+npm install motion-kit
+```
+
+## Utilisation de base
+
+```jsx
+import { Notification } from 'motion-kit';
+
+const element = document.querySelector('.notification-container');
+const notification = new Notification(element, {
+  type: 'success',
+  position: 'top-right'
+});
+notification.show('Opération réussie !');
+```
+
+## Types de notifications
+
+MotionKit propose plusieurs types de notifications prédéfinis :
+
+### Success
+
+```jsx
+const notification = new Notification(element, {
+  type: 'success',
+  position: 'top-right'
+});
+notification.show('Opération réussie !');
+```
+
+### Error
+
+```jsx
+const notification = new Notification(element, {
+  type: 'error',
+  position: 'top-right'
+});
+notification.show('Une erreur est survenue.');
+```
+
+### Warning
+
+```jsx
+const notification = new Notification(element, {
+  type: 'warning',
+  position: 'top-right'
+});
+notification.show('Attention, veuillez vérifier vos informations.');
+```
+
+### Info
+
+```jsx
+const notification = new Notification(element, {
+  type: 'info',
+  position: 'top-right'
+});
+notification.show('Nouvelles mises à jour disponibles.');
+```
+
+## Positions
+
+Les notifications peuvent être affichées à différentes positions :
+
+- `top-right` (par défaut)
+- `top-left`
+- `top-center`
+- `bottom-right`
+- `bottom-left`
+- `bottom-center`
+
+## Options
+
+| Option | Type | Par défaut | Description |
+|--------|------|------------|-------------|
+| `type` | `'success' \| 'error' \| 'warning' \| 'info'` | `'info'` | Type de notification |
+| `position` | `'top-right' \| 'top-left' \| 'top-center' \| 'bottom-right' \| 'bottom-left' \| 'bottom-center'` | `'top-right'` | Position de la notification |
+| `duration` | `number` | `300` | Durée de l'animation en ms |
+| `easing` | `string` | `'ease-in-out'` | Fonction d'accélération |
+| `autoClose` | `boolean` | `true` | Fermeture automatique |
+| `autoCloseDelay` | `number` | `3000` | Délai avant fermeture automatique en ms |
+| `maxNotifications` | `number` | `5` | Nombre maximum de notifications simultanées |
+
+## Personnalisation avancée
+
+### Style personnalisé
+
+```jsx
+const notification = new Notification(element, {
+  type: 'success',
+  position: 'top-right',
+  style: {
+    backgroundColor: '#4caf50',
+    color: 'white',
+    borderRadius: '8px',
+    padding: '16px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
+  }
+});
+```
+
+### Animation personnalisée
+
+```jsx
+const notification = new Notification(element, {
+  type: 'info',
+  position: 'top-right',
+  duration: 500,
+  easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+});
+```
+
+## Méthodes
+
+### show
+
+Affiche une notification avec le message spécifié.
+
+```jsx
+notification.show('Votre message ici');
+```
+
+### hide
+
+Masque la notification avec une animation.
+
+```jsx
+notification.hide();
+```
+
+### destroy
+
+Nettoie la notification et supprime les animations.
+
+```jsx
+notification.destroy();
+```
+
+## Bonnes pratiques
+
+1. **Performance**
+   - Limitez le nombre de notifications simultanées
+   - Utilisez des animations légères
+   - Nettoyez les notifications inutilisées
+
+2. **Accessibilité**
+   - Utilisez des couleurs avec un bon contraste
+   - Ajoutez des icônes pour une meilleure compréhension
+   - Assurez la compatibilité avec les lecteurs d'écran
+
+3. **UX**
+   - Gardez les messages concis et clairs
+   - Utilisez le type approprié pour chaque message
+   - Permettez à l'utilisateur de fermer manuellement
+
+## Exemples
+
+### Notification de succès avec icône
+
+```jsx
+const successNotification = new Notification(element, {
+  type: 'success',
+  position: 'top-right',
+  icon: '✓'
+});
+successNotification.show('Votre profil a été mis à jour !');
+```
+
+### Notification d'erreur avec action
+
+```jsx
+const errorNotification = new Notification(element, {
+  type: 'error',
+  position: 'top-right',
+  action: {
+    text: 'Réessayer',
+    onClick: () => retryOperation()
+  }
+});
+errorNotification.show('Échec de la connexion');
+```
+
+### Notification d'information persistante
+
+```jsx
+const infoNotification = new Notification(element, {
+  type: 'info',
+  position: 'top-center',
+  autoClose: false
+});
+infoNotification.show('Nouvelles fonctionnalités disponibles !');
+```
+
+## Dépannage
+
+### La notification ne s'affiche pas
+- Vérifiez que l'élément conteneur existe
+- Assurez-vous que le message n'est pas vide
+- Vérifiez les erreurs dans la console
+
+### Problèmes de positionnement
+- Vérifiez que la position est valide
+- Assurez-vous que le conteneur est visible
+- Vérifiez les conflits CSS
+
+### Problèmes d'animation
+- Vérifiez la durée et l'easing
+- Assurez-vous que les styles sont correctement appliqués
+- Vérifiez les performances du navigateur 

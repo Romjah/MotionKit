@@ -1,0 +1,183 @@
+# Hover
+
+Le composant `Hover` permet de créer des animations élégantes au survol d'un élément. Il offre une API simple et flexible pour personnaliser les effets de survol.
+
+## Installation
+
+```bash
+npm install motion-kit
+```
+
+## Utilisation de base
+
+```jsx
+import { Hover } from 'motion-kit';
+
+const element = document.querySelector('.my-element');
+const hover = new Hover(element, {
+  scale: 1.1,
+  rotate: 5
+});
+```
+
+## Options
+
+| Option | Type | Par défaut | Description |
+|--------|------|------------|-------------|
+| `scale` | `number` | `1.05` | Facteur d'échelle au survol |
+| `rotate` | `number` | `0` | Angle de rotation en degrés |
+| `translateX` | `number` | `0` | Translation horizontale en pixels |
+| `translateY` | `number` | `0` | Translation verticale en pixels |
+| `shadow` | `string` | `'0 4px 8px rgba(0, 0, 0, 0.1)'` | Ombre portée au survol |
+| `duration` | `number` | `300` | Durée de l'animation en millisecondes |
+| `easing` | `string` | `'ease'` | Fonction d'accélération |
+| `delay` | `number` | `0` | Délai avant l'animation en millisecondes |
+
+## Effets prédéfinis
+
+MotionKit inclut plusieurs effets prédéfinis pour un démarrage rapide :
+
+### Lift
+
+```jsx
+const hover = Hover.lift(element);
+```
+
+L'élément se soulève légèrement au survol.
+
+### Rotate
+
+```jsx
+const hover = Hover.rotate(element);
+```
+
+L'élément effectue une légère rotation au survol.
+
+### Bounce
+
+```jsx
+const hover = Hover.bounce(element);
+```
+
+L'élément rebondit au survol avec une animation élastique.
+
+### Glow
+
+```jsx
+const hover = Hover.glow(element);
+```
+
+L'élément émet un effet de lueur au survol.
+
+## Personnalisation avancée
+
+### Combinaison d'effets
+
+```jsx
+const hover = new Hover(element, {
+  scale: 1.1,
+  rotate: 5,
+  translateY: -5,
+  shadow: '0 8px 16px rgba(0, 0, 0, 0.2)'
+});
+```
+
+### Animation personnalisée
+
+```jsx
+const hover = new Hover(element, {
+  duration: 500,
+  easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+  scale: 1.2,
+  rotate: 10
+});
+```
+
+## Méthodes
+
+### updateOptions
+
+Met à jour les options de l'animation.
+
+```jsx
+hover.updateOptions({
+  scale: 1.2,
+  rotate: 10
+});
+```
+
+### destroy
+
+Nettoie l'animation et supprime les écouteurs d'événements.
+
+```jsx
+hover.destroy();
+```
+
+## Bonnes pratiques
+
+1. **Performance**
+   - Utilisez des valeurs de `scale` raisonnables (1.0 à 1.2)
+   - Évitez les rotations excessives
+   - Limitez le nombre d'éléments animés simultanément
+
+2. **Accessibilité**
+   - Assurez-vous que l'animation ne perturbe pas la lisibilité
+   - Respectez les préférences de réduction de mouvement
+   - Maintenez un contraste suffisant
+
+3. **UX**
+   - Gardez les animations courtes (200-300ms)
+   - Utilisez des effets subtils pour ne pas distraire
+   - Assurez une transition fluide dans les deux sens
+
+## Exemples
+
+### Carte interactive
+
+```jsx
+const card = new Hover(element, {
+  scale: 1.05,
+  shadow: '0 8px 16px rgba(0, 0, 0, 0.2)',
+  duration: 200
+});
+```
+
+### Bouton animé
+
+```jsx
+const button = new Hover(element, {
+  scale: 1.1,
+  translateY: -2,
+  shadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+  duration: 150
+});
+```
+
+### Icône interactive
+
+```jsx
+const icon = new Hover(element, {
+  rotate: 15,
+  scale: 1.2,
+  duration: 300,
+  easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+});
+```
+
+## Dépannage
+
+### L'animation ne se déclenche pas
+- Vérifiez que l'élément est bien sélectionné
+- Assurez-vous que l'élément est visible et interactif
+- Vérifiez les erreurs dans la console
+
+### Animation saccadée
+- Réduisez la complexité des transformations
+- Utilisez `will-change: transform` pour les éléments complexes
+- Évitez les animations simultanées sur le même élément
+
+### Problèmes de performance
+- Limitez le nombre d'éléments animés
+- Utilisez des valeurs de transformation simples
+- Évitez les animations sur les éléments de grande taille 

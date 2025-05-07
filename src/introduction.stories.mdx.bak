@@ -1,0 +1,135 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction" />
+
+# MotionKit
+
+Une collection de micro-animations réutilisables pour améliorer l'UX des applications web.
+
+## 🚀 Installation
+
+```bash
+npm install motion-kit
+# ou
+yarn add motion-kit
+```
+
+## 📦 Fonctionnalités
+
+- Collection d'animations modulaires et configurables
+- Démos interactives pour chaque animation
+- Documentation d'utilisation
+- Bundle optimisé pour la performance
+- Intégration avec frameworks populaires
+
+## 🎯 Utilisation
+
+MotionKit fournit plusieurs types d'animations :
+
+### Transitions
+
+Les animations de transition permettent de créer des effets fluides entre les états :
+
+```typescript
+import { Transition } from 'motion-kit';
+
+const element = document.querySelector('.my-element');
+const transition = new Transition(element);
+
+// Fade in
+transition.fadeIn();
+
+// Slide in from left
+transition.slideIn('left');
+```
+
+### Notifications
+
+Les animations de notification permettent d'afficher des messages avec différents types :
+
+```typescript
+import { Notification } from 'motion-kit';
+
+const element = document.createElement('div');
+const notification = new Notification(element, {
+  type: 'success',
+  position: 'top',
+});
+
+notification.show('Operation successful!');
+```
+
+### Loading
+
+Les animations de chargement fournissent un retour visuel pendant les opérations :
+
+```typescript
+import { Loading } from 'motion-kit';
+
+const element = document.querySelector('.loading-element');
+const loading = new Loading(element, {
+  size: 'medium',
+  color: '#3498db',
+});
+
+loading.start();
+```
+
+### States
+
+Les animations d'état permettent de refléter visuellement différents états :
+
+```typescript
+import { States } from 'motion-kit';
+
+const element = document.querySelector('.state-element');
+const states = new States(element);
+
+states.setState('success');
+```
+
+### Hover
+
+Les effets de survol ajoutent de l'interactivité aux éléments :
+
+```typescript
+import { Hover } from 'motion-kit';
+
+const element = document.querySelector('.hover-element');
+const hover = Hover.lift(element);
+```
+
+## 🎨 Personnalisation
+
+Toutes les animations peuvent être personnalisées avec des options :
+
+```typescript
+const options = {
+  duration: 500, // durée en millisecondes
+  easing: 'ease-in-out', // fonction d'accélération
+  delay: 100, // délai avant l'animation
+};
+```
+
+## 🛠️ Développement
+
+```bash
+# Installation des dépendances
+npm install
+
+# Développement
+npm run dev
+
+# Build
+npm run build
+
+# Tests
+npm test
+
+# Storybook
+npm run storybook
+```
+
+## 📚 Documentation
+
+Explorez les différentes animations dans la barre latérale pour voir des exemples interactifs et la documentation détaillée de chaque composant. 
